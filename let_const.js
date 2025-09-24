@@ -12,7 +12,7 @@
 
 let b = 10;
 b = 20;
-console.log(b);
+console.log(b);//20
 
 
 let lunch = "🍕";
@@ -38,7 +38,7 @@ console.log(course)
 
 // const
 const courses = ["maths", "physics", "fullstack"];
-courses.push() //add an element
+courses.push('science') //add an element
 console.log(courses) //['maths', 'physics', 'fullstack', 'science']
 
 //regular function => write a long homework

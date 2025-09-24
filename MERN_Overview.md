@@ -36,3 +36,9 @@ customer => react(UI/menu) => Express (Waiter) => Nodejs(Kitchen) => Mongodb (Pa
 
  let  => your daily lunch order(you can change it tomorrow)  
  const  => your college ID number            
+
+
+ Promises
+
+ NPM => Node Package manager
+ 
