@@ -1,4 +1,3 @@
-
 24 hours session -> 3 days /week
 4 weeks=> 12 days
 
@@ -6,13 +5,11 @@ Life skills => offline 16 hours
 
 Additionally -> Guvi platform credentials
 
-At end
-------
+## At end
 
 2 certificate => Employability skill course completion
-                 MERN stack course completion - E Certificate
-                 Trophies - 4 best students
-
+MERN stack course completion - E Certificate
+Trophies - 4 best students
 
 MERN
 M -> MongoDB - Database => store application data
@@ -20,25 +17,39 @@ E -> ExpressJs - Framework -> handle server and API
 R -> React - Frontend UI -> Build UI
 N -> NodeJs - Server -> backend server
 
-Full Stack developer role
---------------------------
+## Full Stack developer role
+
 - Front end developer(Client-side)
 - Back end developer(Server-side)
 - Database Developer/Administrator
 - Full stack developer
 
-
 customer => react(UI/menu) => Express (Waiter) => Nodejs(Kitchen) => Mongodb (Pantry)
-                ^
-                |
-               Response/Dish 
+^
+|
+Response/Dish
 
+let => your daily lunch order(you can change it tomorrow)  
+ const => your college ID number
 
- let  => your daily lunch order(you can change it tomorrow)  
- const  => your college ID number            
+Promises
 
+NPM => Node Package manager
 
- Promises
+CRUD operation
 
- NPM => Node Package manager
- 
+---
+
+                                HTTP methods
+
+C -> Create => add /insert -> POST
+R -> Read => get -> GET
+U => Update = > edit/update -> PUT
+D => Delete => delete -> DELETE
+
+settig up express env
+
+---
+
+1.  npm init => initialising package.json
+2.  npm i express=> node_module will be created and express along with version will be added as dependency to package.json
