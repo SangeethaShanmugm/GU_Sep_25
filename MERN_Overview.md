@@ -53,3 +53,25 @@ settig up express env
 
 1.  npm init => initialising package.json
 2.  npm i express=> node_module will be created and express along with version will be added as dependency to package.json
+
+
+        ┌──────────────┐
+Client →│ Express Router│
+        └──────┬───────┘
+               │
+       ┌───────┼────────────────────┐
+       │       │                    │
+ GET /todos GET /todos/:id      POST /todos
+       │       │                    │
+       ▼       ▼                    ▼
+ return all   find by id        add new todo
+   todos   ┌─────┐ 404 if not      (req.body)
+           │todo │ found
+           └─────┘
+       │       │                    │
+ PUT /todos/:id                  DELETE /todos/:id
+       │                                │
+       ▼                                ▼
+ update task/completed          remove todo by id
+  (if provided)                 return deleted
+
