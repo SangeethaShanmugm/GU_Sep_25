@@ -1,7 +1,9 @@
 // import express from 'express'
 const express = require('express');
-const PORT = 8000;
+require('dotenv').config() // load .env file
+const PORT = process.env.PORT;
 const app = express()
+console.log(process.env.PORT);
 
 // req => what we send to server
 // res => what server respond back
@@ -63,7 +65,6 @@ app.get('/todos/:todosId', (req, res) => {
 })
 
 //remove todo id
-
 app.delete('/todos/:id', (req, res) => {
     // const { id } = req.params
     const index = todos.findIndex(t => t.id === req.params.id)
@@ -106,4 +107,4 @@ app.put("/todos/:id", (req, res) => {
     todo.completed = req.body.completed !== undefined ? req.body.completed : todo.completed;
     res.json(todo);
 })
-app.listen(PORT, () => console.log("Server started on the PORT http://localhost:", PORT));
+app.listen(PORT, () => console.log(`${process.env.APP_NAME} started on the PORT http://localhost:${process.env.PORT}`));
