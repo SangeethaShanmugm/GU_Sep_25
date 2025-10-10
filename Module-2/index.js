@@ -1,5 +1,6 @@
 // import express from 'express'
 const express = require('express');
+const { MongoClient } = require('mongodb');
 require('dotenv').config() // load .env file
 const PORT = process.env.PORT;
 const app = express()
@@ -19,6 +20,25 @@ app.use((req, res, next) => {
     next(); // go to the next middleware or route handler
 })
 
+
+// Connection URL
+const url = process.env.MONGO_URI;
+const client = new MongoClient(url);
+
+let todoCollection;
+
+async function connectDB() {
+    try {
+        await client.connect();
+        const db = client.db(process.env.DB_NAME);
+        todoCollection = db.collection('todos');
+        console.log("✅ Mongodb connected successfully");
+    } catch (err) {
+        console.error("❌ Mongodb connection error", err)
+    }
+}
+
+connectDB();
 
 //temporary in-memory
 let todos = [
@@ -78,19 +98,46 @@ app.delete('/todos/:id', (req, res) => {
 })
 
 //add a new todo
-app.post("/todos", (req, res) => {
+app.post("/todos", async (req, res) => {
     // const newTodo = req.body;
-    const newTodo = {
-        id: (todos.length + 1).toString(),
-        title: req.body.title,
-        description: req.body.description,
-        dueDate: req.body.dueDate,
-        priority: req.body.priority,
-        completed: false
+    try {
+        //if db is not connected, display local array
+        if (!todoCollection) {
+            const newTodo = {
+                id: (todos.length + 1).toString(),
+                title: req.body.title,
+                description: req.body.description,
+                dueDate: req.body.dueDate,
+                priority: req.body.priority,
+                completed: false
+            }
+            todos.push(newTodo);
+            res.status(201).json({ message: "Todo added in memory" });
+        }
+        //find highest existing id in db
+        const lastTodo = await todoCollection.find().sort({ id: -1 }).limit(1).toArray();
+        const nextId = lastTodo.length > 0 ? (parseInt(lastTodo[0].id) + 1).toString() : "1"
+        //add new todo -> assign increment ID => last record in db
+        //check => whats last added todo(highest id)
+        //add 1  to that ID
+        // use it for new todo id
+
+        //create new todo
+        const newTodo = {
+            id: nextId,
+            title: req.body.title,
+            description: req.body.description,
+            dueDate: req.body.dueDate,
+            priority: req.body.priority,
+            completed: false
+        }
+        await todoCollection.insertOne(newTodo)
+        res.status(201).json({ message: "Todo added" });
     }
-    console.log(req.body)
-    todos.push(newTodo);
-    res.status(201).json(todos);
+    catch (err) {
+        console.error(err)
+        return res.status(500).json({ message: "Server Error" })
+    }
 
 })
 

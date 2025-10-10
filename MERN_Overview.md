@@ -42,10 +42,10 @@ CRUD operation
 
                                 HTTP methods
 
-C -> Create => add /insert -> POST
-R -> Read => get -> GET
-U => Update = > edit/update -> PUT
-D => Delete => delete -> DELETE
+C -> Create => add /insert -> POST     - insertOne, insertMany
+R -> Read => get -> GET                - findOne, find
+U => Update = > edit/update -> PUT     -  updateOne, updateMany
+D => Delete => delete -> DELETE        -  deleteOne, deleteMany
 
 settig up express env
 
@@ -88,49 +88,47 @@ model -> books & catalog -> stores all information
 view -> library website or notice board -> student sees list of books(UI)
 controller -> librarian -> req receive from students and tells the model what to do, then sends info to view
 
-
 env -> configuration stored outside your code -> sensitive data or setting per env -> dev, test, prod
 example -> port num, API key, database URL
 
+## mongodb
 
-mongodb
---------
-
-non-relational db  ->  no structure
-object {} => document
+non-relational db -> no structure
+object {} = row => document
 table -> collection
 
-store -> BSON  -> Binary JSOn
+store -> BSON -> Binary JSON
 
 [
-  {
-    "Company": "Alfreds Futterkiste",
-    "Contact": "Maria Anders",
-    "Country": "Germany"
-  },
-  {
-    "Company": "Centro comercial Moctezuma",
-    "Contact": "Francisco Chang",
-    "Country": "Mexico"
-  },
-  {
-    "Company": "Ernst Handel",
-    "Contact": "Roland Mendel",
-    "Country": "Austria"
-  },
-  {
-    "Company": "Island Trading",
-    "Contact": "Helen Bennett",
-    "Country": "UK"
-  },
-  {
-    "Company": "Laughing Bacchus Winecellars",
-    "Contact": "Yoshi Tannamuri",
-    "Country": "Canada"
-  },
-  {
-    "Company": "Magazzini Alimentari Riuniti",
-    "Contact": "Giovanni Rovelli",
-    "Country": "Italy"
-  }
+{
+"Company": "Alfreds Futterkiste",
+"Contact": "Maria Anders",
+"Country": "Germany"
+},
+{
+"Company": "Centro comercial Moctezuma",
+"Contact": "Francisco Chang",
+"Country": "Mexico"
+},
+{
+"Company": "Ernst Handel",
+"Contact": "Roland Mendel",
+"Country": "Austria"
+},
+{
+"Company": "Island Trading",
+"Contact": "Helen Bennett",
+"Country": "UK"
+},
+{
+"Company": "Laughing Bacchus Winecellars",
+"Contact": "Yoshi Tannamuri",
+"Country": "Canada"
+},
+{
+"Company": "Magazzini Alimentari Riuniti",
+"Contact": "Giovanni Rovelli",
+"Country": "Italy"
+}
 ]
+
